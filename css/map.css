@@ -1,0 +1,134 @@
+
+.map {
+    width: 720px;
+    height: 575px;
+    border-radius: 20px;
+}
+
+.location {
+    width: 100px;
+    height: 120px;
+    background-color: black;
+    opacity: 0.3;
+    color: white;
+    padding: 5px;
+    position: absolute;
+    -webkit-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+    box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+}
+
+.location p {
+    margin-block-start: 4px;
+    margin-left: 5px;
+    margin-block-end: -15px;
+}
+
+.location-open {
+    background-color: black;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.location-complete {
+    opacity: 1;
+}
+
+.completed-mark {
+    background-image: url('../assets/maps/completed.png');
+    width: 110px;
+    height: 130px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.location-current {
+    opacity: 1;
+}
+
+.current-loc-sprite {
+    width: 40px;
+    height: 40px;
+    -webkit-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+    box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+    background-color: black;
+    position: absolute;
+    top: 90px;
+    left: 70px;
+}
+
+.map-sprite-knight {
+    background-image: url('../assets/maps/knight-map.png');
+}
+
+.map-sprite-herald {
+    background-image: url('../assets/maps/herald-map.png');
+}
+
+.map-sprite-sorcerer {
+    background-image: url('../assets/maps/sorcerer-map.png');
+}
+
+.map-sprite-assassin {
+    background-image: url('../assets/maps/thief-map.png');
+}
+
+.map-sprite-random {
+    background-image: url('../assets/maps/random-map.png');
+}
+
+.bonfire-sprite {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.bonfire-sprite-6 {
+    background-image: url('../assets/bonfire/bonfire-6.png');
+}
+
+.bonfire-sprite-5 {
+    background-image: url('../assets/bonfire/bonfire-5.png');
+}
+
+.bonfire-sprite-4 {
+    background-image: url('../assets/bonfire/bonfire-4.png');
+}
+
+.bonfire-sprite-3 {
+    background-image: url('../assets/bonfire/bonfire-3.png');
+}
+
+.bonfire-sprite-2 {
+    background-image: url('../assets/bonfire/bonfire-2.png');
+}
+
+.bonfire-sprite-1 {
+    background-image: url('../assets/bonfire/bonfire-1.png');
+}
+
+.bonfire-sprite-0 {
+    background-image: url('../assets/bonfire/bonfire-0.png');
+}
+
+.bonfire-illus {
+    width: 200px;
+    height: 95px;
+    background-color: black;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.bonfire-illus-sprites {
+    margin: 0 auto;
+}
+
+.bonfire-sprite-illus {
+    margin: unset;
+    display: inline-block;
+}
+

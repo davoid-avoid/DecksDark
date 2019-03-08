@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <title>Decks Dark</title>
+    <script src="js/howler.js" type="text/javascript"></script>
+    <script src="js/audioHandler.js" type="text/javascript"></script>
+    <script src="js/cardList.js" type="text/javascript"></script>
+    <script src="js/mapList.js" type="text/javascript"></script>
+    <script src="js/enemies.js" type="text/javascript"></script>
+    <script src="js/startingClasses.js" type="text/javascript"></script>
+    <script src="js/deckParser.js" type="text/javascript"></script>
+    <script src="js/combatCore.js" type="text/javascript"></script>
+    <script src="js/mapGenerator.js" type="text/javascript"></script>
+    <script src="js/UIHandling.js" type="text/javascript"></script>
+    <script src="js/statusEffect.js" type="text/javascript"></script>
+    <script src="js/specialEnemy.js" type="text/javascript"></script>
+    <script src="js/specialPower.js" type="text/javascript"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/UI.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+    <link rel="stylesheet" type="text/css" href="css/characters.css">
+    <link rel="stylesheet" type="text/css" href="css/enemies.css">
+    <link rel="stylesheet" type="text/css" href="css/map.css">
+
+    <link rel="shortcut icon" href="http://underbrush.ca/DecksDark/favicon.ico" />
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div id='title'>
+            <div class='title-screen' onClick='selectClassShow()'></div>
+        </div>
+
+        <div id="classSelect" class='hidden'>
+            <br>
+            <center><h1>Select a Class</h1></center><br>
+            <div class="charSelect" onClick="createPlayerObject('knight')">
+                <h2>Knight</h2>
+                <div class="character-image character-image-knight"></div>
+                <p>Good amount of shielding and armor, specializes in slicing damage</p>
+                <p>Special Power: Gain 7 Block</p>
+            </div>
+            <div class="charSelect" onClick="createPlayerObject('assassin')">
+                <h2>Assassin</h2>
+                <div class="character-image character-image-assassin"></div>
+                <p>High dexterity, cheap defense, specializes in precise damage</p>
+                <p>Special Power: Attack All Enemies for 1 Damage</p>
+            </div>
+            <div class="charSelect" onClick="createPlayerObject('sorcerer')">
+                <h2>Sorcerer</h2>
+                <div class="character-image character-image-sorcerer"></div>
+                <p>High damage, low defense, specializes in magic damage</p>
+                <p>Special Power: Recover 1 Stamina in All Stats</p>
+            </div>
+            <div class="charSelect" onClick="createPlayerObject('herald')">
+                <h2>Herald</h2>
+                <div class="character-image character-image-herald"></div>
+                <p>Ability to heal and use miracles, specializes in bash damage</p>
+                <p>Special Power: Regain 2 Cards From Lost</p>
+            </div>
+            <div class="charSelect" onClick="createPlayerObject('random')">
+                <h2>Randomized</h2>
+                <div class="character-image character-image-random"></div>
+                <p>A random assortment of stats and starting items, but starts with higher stats</p>
+                <p>Special Power: Randomized</p>
+            </div>
+        </div>
+
+        <div id="map-screen" class="hidden">
+            <div id="map" class="map">
+
+            </div>
+        </div>
+
+        <div id="tableau" class="hidden">
+
+            <div class="row" id="battlefield">
+                <div id="battle-character"></div>
+                <div id="enemies"></div>
+            </div>
+            <div class="row">
+                <div id="cardHand"></div>
+            </div>
+        </div>
+        <div id="ui-elements" class="hidden">
+            <div class="row">
+                <div id="readout"></div>
+                <div id="playerStats"></div>
+                <div class="col" id='battle-ui' class="hidden">
+                    <div id="endTurn" class="UIButton" onClick="endTurnPrompt()">End Turn</div>
+                    <div id="claimDiscard" class="UIButton" onClick="claimDiscard()">Reclaim Discarded
+                        <span class='icon icon-discard' style="margin-left: 8px"></span>
+                    </div>
+                    <div id="specialPower" class="UIButton" onClick="useSpecialPowerPrompt()">Use Special Power</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-container" class="hidden">
+        <div class="modal" id="modal-backing">
+            <div class="modal-content" id="modal-content">
+
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+.enemy-image {
+    width: 50px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+
+
+.enemy-image-skeleton {
+    background-image: url('../assets/enemies/skeleton.png')
+}
+
+.enemy-image-novice-knight {
+    background-image: url('../assets/enemies/novice-knight.png')
+}
+
+.enemy-image-novice-rogue {
+    background-image: url('../assets/enemies/novice-rogue.png')
+}
+
+.enemy-image-novice-mage {
+    background-image: url('../assets/enemies/novice-mage.png')
+}
+
+.enemy-image-novice-zealot {
+    background-image: url('../assets/enemies/novice-zealot.png')
+}
+
+.enemy-image-slime {
+    background-image: url('../assets/enemies/slime.png')
+}
+
+.enemy-image-hollow {
+    background-image: url('../assets/enemies/hollow.png')
+}
+
+.enemy-image-goblin {
+    background-image: url('../assets/enemies/goblin.png')
+}
+
+
+
+.enemy-image-skeletal-knight {
+    background-image: url('../assets/enemies/skeletal-knight.png')
+}
+
+.enemy-image-undead-mage {
+    background-image: url('../assets/enemies/undead-mage.png')
+}
+
+.enemy-image-hollow-knight {
+    background-image: url('../assets/enemies/hollow-knight.png')
+}
+
+.enemy-image-ghost {
+    background-image: url('../assets/enemies/ghost.png')
+}
+
+.enemy-image-demonic-tree {
+    background-image: url('../assets/enemies/demonic-tree.png')
+}
+
+.enemy-image-drowned-warrior {
+    background-image: url('../assets/enemies/drowned-warrior.png')
+}
+
+.enemy-image-orc {
+    background-image: url('../assets/enemies/orc.png')
+}
+
+.enemy-image-shield-mage {
+    background-image: url('../assets/enemies/shield-mage.png')
+}
+
+.enemy-image-attack-mage {
+    background-image: url('../assets/enemies/attack-mage.png')
+}
+
+.enemy-image-healing-mage {
+    background-image: url('../assets/enemies/healing-mage.png')
+}
+
+
+
+.enemy-image-unseen-horror {
+    background-image: url('../assets/enemies/unseen-horror.png')
+}
+
+.enemy-image-necrotic-mass {
+    background-image: url('../assets/enemies/necrotic-mass.png')
+}
+
+.enemy-image-forgotten-soul {
+    background-image: url('../assets/enemies/forgotten-soul.png')
+}
+
+.enemy-image-drake {
+    background-image: url('../assets/enemies/drake.png')
+}
+
+.enemy-image-unspoken {
+    background-image: url('../assets/enemies/unspoken.png')
+}
+
+.enemy-image-capra-demon {
+    background-image: url('../assets/enemies/capra-demon.png')
+}
+
+.enemy-image-missingno {
+    background-image: url('../assets/enemies/missingno.png')
+}
+
+.enemy-image-horror {
+    background-image: url('../assets/enemies/horror.png')
+}
+
+
+.enemy-image-blessed-lord {
+    background-image: url('../assets/enemies/blessed-lord.png')
+}
+
+.enemy-image-pardonner-lavender {
+    background-image: url('../assets/enemies/pardonner-lavender.png')
+}
+
+.enemy-image-gravelord {
+    background-image: url('../assets/enemies/gravelord.png')
+}
+
+.enemy-image-gravelord-follower {
+    background-image: url('../assets/enemies/gravelord-follower.png')
+}
+
+
+.enemy-image-voice-infinite {
+    background-image: url('../assets/enemies/voice-infinite.png')
+}
+
+.enemy-image-threads-fate {
+    background-image: url('../assets/enemies/threads-fate.png')
+}
+
+.enemy-image-dragonslayer {
+    background-image: url('../assets/enemies/dragonslayer.png')
+}
+
+.enemy-image-royal-wizard {
+    background-image: url('../assets/enemies/royal-wizard.png')
+}
+
+
+

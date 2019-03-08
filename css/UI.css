@@ -1,0 +1,378 @@
+#classSelect {
+    
+}
+
+
+body {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+.wrapper {
+    width: 720px;
+    position: relative;
+    margin: 0 auto;
+}
+
+
+.charSelect {
+    width: 180px;
+    margin: 5px;
+    color: white;
+    background-color: black;
+    float: left;
+    padding: 20px;
+    cursor: pointer;
+    height: 200px;
+}
+
+.charSelect:hover {
+    background-color: darkgrey;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.row {
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.popup-row {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.enemytarget:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+#tableau {
+
+}
+
+#ui-elements {
+    width: 720px;
+    background-color: black;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+#battle-ui {
+    right: 0;
+    position: relative;
+    margin-left: 190px;
+    margin-top: 10px;
+}
+
+#cardHand {
+    display: inline-block;
+    margin-left: 80px;
+    height: 230px;
+}
+
+.hand-border {
+    height: 140px;
+    top: -20px;
+    width: 30px;
+}
+
+#playerStats {
+    width: 140px;
+    height: 170px;
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+}
+
+.stat-row {
+    width: 100%;
+    margin-top: -12px;
+}
+
+.UIButton {
+    width: 165px;
+    display: flex;
+    margin: 10px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px white solid;
+}
+
+#readout {
+    width: 85px;
+    height: 200px;
+    display: block;
+    margin: 10px;
+    color: white;
+    background-color: black;
+    padding: 5px;
+}
+
+.UIButton:hover {
+    background-color: grey;
+}
+
+.card {
+    width: 130px;
+    height: 180px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    float: left;
+    margin: 5px;
+    transition: transform 0.5s;
+    transform: rotateY(0deg);
+    cursor: pointer;
+}
+
+.card-popup {
+    width: 130px;
+    height: 180px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    float: left;
+    margin: 5px;
+    transition: transform 0.5s;
+    transform: rotateY(0deg);
+    cursor: pointer;
+    text-align: left;
+}
+
+.card-wrapper {
+    position: relative;
+    width: 180px;
+    display: inline-block;
+    float: left;
+}
+
+.enemies {
+    width: 130px;
+    height: 285px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 5px;
+    position: relative;
+    float: left;
+    text-align: left;
+}
+
+h2 {
+    margin-block-start: 0px;
+    margin-block-end: 5px;
+    font-size: 13pt;
+    font-weight: normal;
+}
+
+h3 {
+    margin-block-start: 3px;
+    margin-block-end: 3px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.flipped {
+    transform: rotateY(90deg) !important;
+}
+
+.ability {
+    width: 100%;
+    float: left;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.ability-row {
+    width: 100%;
+    float: left;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.ability:hover {
+    background-color: darkgrey;
+}
+
+.discard {
+    width: 100%;
+    float: left;
+    cursor: pointer;
+}
+
+.discard:hover {
+    background-color: darkgrey;
+}
+
+.stat {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    float: left;
+    margin: 5px;
+}
+
+.statPopup {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    float: left;
+    position: relative;
+    margin: 5px;
+}
+
+.strengthStat {
+    background-color: yellow;
+}
+
+.dexterityStat {
+    background-color: royalblue;
+}
+
+.magicStat {
+    background-color: mediumpurple;
+}
+
+.faithStat {
+    background-color: red;
+}
+
+.spentStat {
+    background-color: grey;
+}
+
+.playerStat {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.playerStatLevel {
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.playerStatLevel:hover {
+    background-color: darkgrey;
+}
+
+.error {
+    color: red !important;
+}
+
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    text-align: center;
+  }
+
+  .popup-button {
+      color: white;
+      padding: 20px;
+      background-color: black;
+      display: inline-block;
+      cursor: pointer;
+
+  }
+
+  .stash-button {
+      font-size: 11pt;
+      margin: 10px;
+      padding: 9px;
+  }
+
+  .popup-button:hover {
+    background-color: darkgrey;
+}
+
+.readout-button {
+    color: white;
+    padding: 2px;
+    background-color: black;
+    cursor: pointer;
+    margin: 3px;
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+.readout-button:hover {
+  background-color: darkgrey;
+}
+
+.enemyHP-outer {
+    width: 100%;
+    height: 8px;
+    border: 1px solid white;
+    padding-right: 2px;
+}
+
+.enemyHP-inner {
+    height: 6px;
+    margin: 1px;
+    background-color: white;
+}
+
+.card-title {
+
+}
+
+#battlefield {
+    width: 720px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.title-screen {
+    width: 720px;
+    height: 575px;
+    background-color: black;
+    border-radius: 20px;
+    background-image: url('../assets/icons/title.png');
+    background-position-x: center;
+    background-position-y: center;
+    background-size: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.disabled-button {
+    opacity: 0.5;
+    cursor: initial;
+}
+
+.disabled-button:hover {
+    background-color: black;
+    color: white;
+}
+

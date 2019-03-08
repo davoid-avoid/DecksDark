@@ -1,0 +1,98 @@
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inherit;
+    float: left;
+    margin-right: 8px;
+}
+
+.icon-topcorner {
+    position: absolute;
+    top: 23px;
+    right: 15px;
+}
+
+.icon-p {
+    float: none; 
+    margin-left: 8px; 
+    display: inline-block;
+}
+
+.icon-attack {
+    background-image: url('../assets/icons/attack.png')
+}
+
+.icon-defend {
+    background-image: url('../assets/icons/defense.png')
+}
+
+.icon-heal {
+    background-image: url('../assets/icons/heal.png')
+}
+
+.icon-discard {
+    background-image: url('../assets/icons/discard.png')
+}
+
+.icon-lost {
+    background-image: url('../assets/icons/lost.png')
+}
+
+.icon-drawdeck {
+    background-image: url('../assets/icons/drawdeck.png')
+}
+
+.icon-drawdeck-inv {
+    background-image: url('../assets/icons/drawdeck-inv.png')
+}
+
+.icon-treasure {
+    background-image: url('../assets/icons/treasure.png')
+}
+
+.icon-souls {
+    background-image: url('../assets/icons/souls.png')
+}
+
+.icon-sound-on {
+    background-image: url('../assets/icons/sound-on.png')
+}
+
+.icon-sound-off {
+    background-image: url('../assets/icons/sound-off.png')
+}
+
+.icon-souls-inv {
+    background-image: url('../assets/icons/souls-inv.png')
+}
+
+.icon-health {
+    background-image: url('../assets/icons/health.png')
+}
+
+.icon-slice {
+    background-image: url('../assets/icons/slice.png')
+}
+
+.icon-precise {
+    background-image: url('../assets/icons/precise.png')
+}
+
+.icon-magic {
+    background-image: url('../assets/icons/magic.png')
+}
+
+.icon-bash {
+    background-image: url('../assets/icons/bash.png')
+}
+
+.icon-difficulty {
+    background-image: url('../assets/icons/difficulty.png');
+    margin-right: -6px;
+    margin-top: 5px;
+}
+
+.icon-boss {
+    background-image: url('../assets/icons/boss.png');
+    margin-top: 5px;
+}

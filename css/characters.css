@@ -1,0 +1,36 @@
+.character-image {
+    width: 50px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.player-shifter {
+    width: 50px;
+    height: 125px;
+    position: relative;
+}
+
+#player-block {
+    width: 100%;
+    height: 55px;
+}
+
+.character-image-knight {
+    background-image: url('../assets/characters/knight.png')
+}
+
+.character-image-sorcerer {
+    background-image: url('../assets/characters/sorcerer.png')
+}
+
+.character-image-assassin {
+    background-image: url('../assets/characters/thief.png')
+}
+
+.character-image-herald {
+    background-image: url('../assets/characters/herald.png')
+}
+
+.character-image-random {
+    background-image: url('../assets/characters/random.png')
+}
