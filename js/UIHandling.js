@@ -90,24 +90,39 @@ function popupDeck(targetDeck){
     if (targetDeck !== 'drawDeck' && targetDeck !== 'treasure'){
         console.log(player[targetDeck]);
         player[targetDeck].forEach((card, index) => {
-            renderCardPopup(card)
+            renderCardPopup(card, 'card-row')
         })
     } else if (targetDeck !== 'treasure') {
         drawClone.forEach((card, index) => {
-            renderCardPopup(card)
+            renderCardPopup(card, 'card-row')
         })
     } else {
-        player.treasure.cards.forEach((card, index) => {
-            renderCardPopup(card)
-        })
+        if (player.treasure.cards.length > 0){
+            player.treasure.cards.forEach((card, index) => {
+                renderCardPopup(card, 'card-row')
+            })
+        } else {
+            popUp.innerHTML += "<p>No Treasure Currently Held</p>";
+        }
+
+        if (player.stashDeck.length > 0){
+            popUp.innerHTML += "<h2>Current Stash (Rest at Bonfire to Exchange or Add)</h2>"
+            popUp.innerHTML += "<div id='card-row2' class='popup-row'></div>";
+            player.stashDeck.forEach((card, index) => {
+                renderCardPopup(card, 'card-row2')
+            })
+        }
+
         popUp.innerHTML += "<p>Currently held souls: <b>" + player.treasure.souls + "</b><span class='icon icon-souls-inv icon-p'></span></p>";
+        
     }
 
     popUp.innerHTML += "<br><br><div id='popupok' class='popup-button' onClick='closePopup()'>OK</div>";
 }
 
-function renderCardPopup(card) {
-    let cardRow = document.getElementById('card-row');
+function renderCardPopup(card, row) {
+    console.log(row)
+    let cardRow = document.getElementById(row);
     let cardAbilities = ""
     let typing = getType(card.type);
     let typingSpan = getTypeSpan(card.type);

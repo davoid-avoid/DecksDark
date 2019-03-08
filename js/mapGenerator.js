@@ -297,7 +297,7 @@ function bonfire() {
 
             popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
             player.treasure.cards.forEach((card, index) => {
-                renderCardPopup(card)
+                renderCardPopup(card, 'card-row')
             })
         } else {
             popUp.innerHTML += "<p>No treasure to claim</p>";
@@ -572,7 +572,7 @@ function showFullDeck() {
     popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
 
     player.drawDeck.forEach(card => {
-        renderCardPopup(card)
+        renderCardPopup(card, 'card-row')
     })
     popUp.innerHTML += "<br><br><div id='popupok' class='popup-button' onClick='returnToBonfirePrompt()'>Ok</div>";
 }
@@ -585,7 +585,7 @@ function showStashDeck() {
     popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
 
     player.stashDeck.forEach(card => {
-        renderCardPopup(card)
+        renderCardPopup(card, 'card-row')
         let cardWrap = document.getElementById('card' + card.deckID + 'wrapper');
         if (player.drawDeck.length < player.deckSize){
             cardWrap.innerHTML += "<div class='popup-button stash-button' onClick='addCardFromStash(" + card.deckID + ")'>Add Card To Draw Deck</div>"
@@ -628,7 +628,7 @@ function exchangeCardFromStash(cardID){
     popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
 
     player.drawDeck.forEach(card => {
-        renderCardPopup(card)
+        renderCardPopup(card, 'card-row')
         let cardWrap = document.getElementById('card' + card.deckID + 'popup');
         cardWrap.setAttribute("onClick", "exchange(" + card.deckID + ", " + stashID + ")");
     })

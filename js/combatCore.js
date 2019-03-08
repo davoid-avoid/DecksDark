@@ -842,7 +842,7 @@ function showTreasureGained() {
         popUp.innerHTML += "<h2>Current Treasure and Rewards</h2>"
         popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
         player.treasure.cards.forEach((card, index) => {
-            renderCardPopup(card)
+            renderCardPopup(card, 'card-row')
         })
         popUp.innerHTML += "<p>Currently held souls: " + player.treasure.souls + "</p>";
     } else {
