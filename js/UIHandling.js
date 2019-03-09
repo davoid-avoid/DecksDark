@@ -19,6 +19,7 @@ function closePopupAttack() {
 
 function updateReadout() {
     let readout = document.getElementById('readout');
+
     let blockRead = ""
     if (player.block > 0) {
         blockRead = "<center><span><span class='icon icon-defend' style='float: none; display: inline-block; top: 4px; position: relative;'></span>" + player.block + "</span></center>"
@@ -27,6 +28,16 @@ function updateReadout() {
     if (playerBlock){
         playerBlock.innerHTML = "";
         playerBlock.innerHTML += blockRead;
+    }
+
+    let attackRead = ""
+    if (Object.keys(player.currentAttack).length > 0) {
+        attackRead = "<center><span><span class='icon icon-attack' style='float: none; display: inline-block; top: 4px; position: relative;'></span>" + player.currentAttack.damage + "</span><span class='icon icon-" + player.currentAttackType + "' style='float: none; display: inline-block; top: 4px; margin-left: 8px; position: relative;'></span></center>"
+    }
+    let playerAttack = document.getElementById('player-attack');
+    if (playerAttack){
+        playerAttack.innerHTML = "";
+        playerAttack.innerHTML += attackRead;
     }
 
     let lostDeckRed = pickHex([255, 0, 0],[255, 255, 255], (player.lostDeck.length/player.drawDeckSize))

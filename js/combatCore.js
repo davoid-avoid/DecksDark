@@ -86,7 +86,7 @@ function getBossMove() {
 
 function renderPlayer() {
     let characterEl = document.getElementById('battle-character')
-    characterCard = "<div class='enemies'><div class='player-shifter'></div><div id='player-block'></div><div class='character-image character-image-" + player.class + "'></div>"
+    characterCard = "<div class='enemies'><div class='player-shifter'></div><div id='player-attack'></div><div id='player-block'></div><div class='character-image character-image-" + player.class + "'></div>"
     characterEl.innerHTML = "";
     characterEl.innerHTML += characterCard;
 }
@@ -269,12 +269,17 @@ function useAbility(ability, cardID, type, name, selection) {
     } else if (ability.type === 'attack' && selection.classList.contains('selected-ability')) {
         selection.classList.remove('selected-ability');
         inAttack = false;
-        player.currentAttack = null;
+        player.currentAttack = {};
         player.currentAttackType = null;
         player.currentCardID = null;
         enemies.childNodes.forEach(enemy => {
             enemy.classList.remove('target-enemy')
         })
+        playSFX('disableweapon')
+        updateReadout()
+    } else {
+        playSFX('discard')
+        flashError('card' + player.currentCardID)
     }
 }
 
@@ -390,19 +395,24 @@ function drawDeckOK() {
 }
 
 function discardCard(id, source) {
-    let cardEl = document.getElementById('card' + id);
-    cardEl.remove();
-    player.hand.forEach((card, index) => {
-        if (card.deckID === id) {
-            player.discardDeck.push(player.hand[index]);
-            player.hand.splice(index, 1);
+    if (!inAttack){
+        let cardEl = document.getElementById('card' + id);
+        cardEl.remove();
+        player.hand.forEach((card, index) => {
+            if (card.deckID === id) {
+                player.discardDeck.push(player.hand[index]);
+                player.hand.splice(index, 1);
+            }
+        })
+        if (source === 'board') {
+            playSFX('discard');
         }
-    })
-    if (source === 'board') {
-        playSFX('discard');
+        drawCard();
+        updateReadout();
+    } else {
+        playSFX('discard')
+        flashError('card' + player.currentCardID)
     }
-    drawCard();
-    updateReadout();
 }
 
 function loseCard(id, source) {
