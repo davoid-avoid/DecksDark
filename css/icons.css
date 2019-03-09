@@ -19,80 +19,99 @@
 }
 
 .icon-attack {
-    background-image: url('../assets/icons/attack.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: 0px 0px; 
 }
 
 .icon-defend {
-    background-image: url('../assets/icons/defense.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -20px 0px; 
 }
 
 .icon-heal {
-    background-image: url('../assets/icons/heal.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -40px 0px; 
 }
 
 .icon-discard {
-    background-image: url('../assets/icons/discard.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -60px 0px; 
 }
 
 .icon-lost {
-    background-image: url('../assets/icons/lost.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -80px 0px; 
 }
 
 .icon-drawdeck {
-    background-image: url('../assets/icons/drawdeck.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -100px 0px; 
 }
 
 .icon-drawdeck-inv {
-    background-image: url('../assets/icons/drawdeck-inv.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -120px 0px; 
 }
 
 .icon-treasure {
-    background-image: url('../assets/icons/treasure.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -140px 0px; 
 }
 
 .icon-souls {
-    background-image: url('../assets/icons/souls.png')
-}
-
-.icon-sound-on {
-    background-image: url('../assets/icons/sound-on.png')
-}
-
-.icon-sound-off {
-    background-image: url('../assets/icons/sound-off.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -160px 0px; 
 }
 
 .icon-souls-inv {
-    background-image: url('../assets/icons/souls-inv.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -180px 0px; 
+}
+
+.icon-sound-on {
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -200px 0px; 
+}
+
+.icon-sound-off {
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -220px 0px; 
 }
 
 .icon-health {
-    background-image: url('../assets/icons/health.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -240px 0px; 
 }
 
 .icon-slice {
-    background-image: url('../assets/icons/slice.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -260px 0px; 
 }
 
 .icon-precise {
-    background-image: url('../assets/icons/precise.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -280px 0px; 
 }
 
 .icon-magic {
-    background-image: url('../assets/icons/magic.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -300px 0px; 
 }
 
 .icon-bash {
-    background-image: url('../assets/icons/bash.png')
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -320px 0px; 
 }
 
 .icon-difficulty {
-    background-image: url('../assets/icons/difficulty.png');
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -340px 0px; 
     margin-right: -6px;
     margin-top: 5px;
 }
 
 .icon-boss {
-    background-image: url('../assets/icons/boss.png');
+    background-image: url('../assets/icons/icon-sheet.png');
+    background-position: -360px 0px; 
     margin-top: 5px;
 }

@@ -87,31 +87,38 @@
 }
 
 .bonfire-sprite-6 {
-    background-image: url('../assets/bonfire/bonfire-6.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -360px 0px; 
 }
 
 .bonfire-sprite-5 {
-    background-image: url('../assets/bonfire/bonfire-5.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -300px 0px; 
 }
 
 .bonfire-sprite-4 {
-    background-image: url('../assets/bonfire/bonfire-4.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -240px 0px; 
 }
 
 .bonfire-sprite-3 {
-    background-image: url('../assets/bonfire/bonfire-3.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -180px 0px; 
 }
 
 .bonfire-sprite-2 {
-    background-image: url('../assets/bonfire/bonfire-2.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -120px 0px; 
 }
 
 .bonfire-sprite-1 {
-    background-image: url('../assets/bonfire/bonfire-1.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: -60px 0px; 
 }
 
 .bonfire-sprite-0 {
-    background-image: url('../assets/bonfire/bonfire-0.png');
+    background-image: url('../assets/bonfire/bonfire-sheet.png');
+    background-position: 0px 0px; 
 }
 
 .bonfire-illus {
