@@ -21,7 +21,21 @@ createjs.Sound.registerSound(audioPath + "hard.mp3", "hard"),
 createjs.Sound.registerSound(audioPath + "boss1.mp3", "boss1"),
 createjs.Sound.registerSound(audioPath + "boss2.mp3", "boss2"),
 createjs.Sound.registerSound(audioPath + "endbattle.mp3", "endbattle"),
-createjs.Sound.registerSound(audioPath + "returnbonfire.mp3", "returnbonfire")
+createjs.Sound.registerSound(audioPath + "returnbonfire.mp3", "returnbonfire"),
+
+createjs.Sound.registerSound(audioPath + "hit.wav", "hit"),
+createjs.Sound.registerSound(audioPath + "kill.wav", "kill"),
+createjs.Sound.registerSound(audioPath + "shield.wav", "shield"),
+createjs.Sound.registerSound(audioPath + "heal.wav", "heal"),
+createjs.Sound.registerSound(audioPath + "special.wav", "special"),
+createjs.Sound.registerSound(audioPath + "endturn.wav", "endturn"),
+createjs.Sound.registerSound(audioPath + "discard.wav", "discard"),
+createjs.Sound.registerSound(audioPath + "nodamage.wav", "nodamage"),
+createjs.Sound.registerSound(audioPath + "death.wav", "death"),
+createjs.Sound.registerSound(audioPath + "levelup.wav", "levelup"),
+createjs.Sound.registerSound(audioPath + "bonfire.wav", "bonfire"),
+createjs.Sound.registerSound(audioPath + "readyweapon.wav", "enableweapon"),
+createjs.Sound.registerSound(audioPath + "disableweapon.wav", "disableweapon"),
 ]
 
 function loadHandler(event) {
@@ -29,111 +43,12 @@ function loadHandler(event) {
     console.log('completed loading ' + event)  // play using id.  Could also use full sourcepath or event.src.
 }
 
-let musicTracks = {
-
-
-    //sfx
-
-    "hit": new Howl({
-        src: ['./assets/sound/hit.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "kill": new Howl({
-        src: ['./assets/sound/kill.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "shield": new Howl({
-        src: ['./assets/sound/shield.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "heal": new Howl({
-        src: ['./assets/sound/heal.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "special": new Howl({
-        src: ['./assets/sound/special.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "endturn": new Howl({
-        src: ['./assets/sound/endturn.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "discard": new Howl({
-        src: ['./assets/sound/discard.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "nodamage": new Howl({
-        src: ['./assets/sound/nodamage.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "death": new Howl({
-        src: ['./assets/sound/death.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "levelup": new Howl({
-        src: ['./assets/sound/levelup.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "bonfire": new Howl({
-        src: ['./assets/sound/bonfire.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "enableweapon": new Howl({
-        src: ['./assets/sound/readyweapon.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-    "disableweapon": new Howl({
-        src: ['./assets/sound/disableweapon.wav'],
-        autoplay: false,
-        loop: false,
-        volume: masterVolume,
-        buffer: true
-    }),
-}
 
 let musicList = ["map", "easy", "medium", "hard", "boss1", "boss2", "endbattle", "returnbonfire"]
 
 function fadeOutAll(key) {
-    console.log(createjs.Sound)
     musicList.forEach(song => {
         if (song !== key) {
-            console.log(song + " fading")
             //musicTracks[song].fade(masterVolume, 0, 1000);
             SM.stopMusic(song, 500)
         } else {
@@ -149,23 +64,20 @@ function fadeSong(endVol, time){
 }
 
 function playMusic(key) {
-    console.log(key)
     fadeOutAll(key);
     setTimeout(function(){
-        console.log('playing ' + key)
         var currentPlaying = SM.playMusic(key, -1, 1)
        // currentPlaying.volume = masterVolume;
     }, 1000)
 }
 
 function playSFX(key){
-    musicTracks[key].play();
+    SM.playSound(key)
 }
 
 function soundControl(){
 
     let volume = createjs.Sound.muted;
-    console.log(volume)
     if (volume === false){
 
         createjs.Sound.muted = true;
@@ -203,7 +115,7 @@ var SM = (function(){
         repeat = repeat||0;
         fadeIn = (!fadeIn)?0:fadeIn;
         var instance = createjs.Sound.play(id);
-        instance.volume = (fadeIn!==0)?0:1;
+        instance.volume = (fadeIn!==0)?0:masterVolume;
         var o = {
             instance    : instance,
             playing     : true,
@@ -213,7 +125,6 @@ var SM = (function(){
             fadeType    : "FADE_IN"
         };
         musics[id] = o;
-        console.log(musics)
         instance.addEventListener("complete",function(){
             SM.musicComplete(o);
         });
@@ -227,8 +138,8 @@ var SM = (function(){
                         o.fadeStep = 0;
                     }
                     o.instance.volume += o.fadeStep;
-                    if(o.instance.volume >= 1){
-                        o.instance.volume = 1;
+                    if(o.instance.volume >= masterVolume){
+                        o.instance.volume = masterVolume;
                     }
                 }else{
                     if (o.fadeStep === "NaN"){
@@ -270,7 +181,6 @@ var SM = (function(){
                 o.fadeStep = ((o.instance.volume*1000)/(60*fadeOut)).toFixed(2);
 
                 if (o.instance.volume === 0){
-                    console.log('ended')
                     o.playing = false;
                 }
             }
