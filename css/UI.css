@@ -186,6 +186,9 @@ h3 {
     transform: rotateY(90deg) !important;
 }
 
+.selected-ability {
+    background-color: darkgrey;
+}
 .ability {
     width: 100%;
     float: left;
@@ -343,8 +346,8 @@ h3 {
     background-color: white;
 }
 
-.card-title {
-
+.target-enemy:hover {
+    outline: 1px solid darkgray;
 }
 
 #battlefield {

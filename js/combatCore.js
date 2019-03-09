@@ -109,10 +109,12 @@ function getEnemies(difficultyArray) {
 function renderEnemies(enemies) {
     let enemiesEl = document.getElementById('enemies');
     enemiesEl.innerHTML = "";
+    let wordsss = "hello"
 
     enemies.forEach((enemy, index) => {
+        console.log(enemy)
         let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-        let newEnemy = "<div id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
+        let newEnemy = "<div onClick='console.log(\"hello\")' id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
         enemiesEl.innerHTML += newEnemy;
 
         setTimeout(function () {
@@ -144,7 +146,7 @@ function renderCard(card) {
     card.abilities.forEach(ability => {
         let cost = getStamina(ability.cost);
         if (ability.type !== 'special') {
-            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
+            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ", this)'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
         } else {
             cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span>" + ability.text + "<br><br>" + cost + "<br></div>"
         }
@@ -160,23 +162,23 @@ function renderCard(card) {
 
 }
 
-function renderCardNoFlip(card) {
-    let handEl = document.getElementById('cardHand');
-    let cardAbilities = ""
-    let typing = getType(card.type);
-    let typingSpan = getTypeSpan(card.type);
-    card.abilities.forEach(ability => {
-        let cost = getStamina(ability.cost);
-        if (ability.type !== 'special') {
-            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
-        } else {
-            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span>" + ability.text + "<br><br>" + cost + "<br></div>"
-        }
-    })
+// function renderCardNoFlip(card) {
+//     let handEl = document.getElementById('cardHand');
+//     let cardAbilities = ""
+//     let typing = getType(card.type);
+//     let typingSpan = getTypeSpan(card.type);
+//     card.abilities.forEach(ability => {
+//         let cost = getStamina(ability.cost);
+//         if (ability.type !== 'special') {
+//             cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
+//         } else {
+//             cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span>" + ability.text + "<br><br>" + cost + "<br></div>"
+//         }
+//     })
 
-    let newCard = "<div id='card" + card.deckID + "' class='card'><h2 class='card-title'>" + card.name + "</h2><h3>" + typingSpan + "</h3>" + cardAbilities + "<div class='discard ability' onClick='discardCard(" + card.deckID + ")'><span class='icon icon-discard'></span></div></div>"
-    handEl.innerHTML += newCard;
-}
+//     let newCard = "<div id='card" + card.deckID + "' class='card'><h2 class='card-title'>" + card.name + "</h2><h3>" + typingSpan + "</h3>" + cardAbilities + "<div class='discard ability' onClick='discardCard(" + card.deckID + ")'><span class='icon icon-discard'></span></div></div>"
+//     handEl.innerHTML += newCard;
+// }
 
 function renderCardDiscard(card) {
     let cardRow = document.getElementById('card-row');
@@ -199,7 +201,6 @@ function renderCardDiscard(card) {
 function renderCardDamage(card) {
     let cardRow = document.getElementById('card-row');
     let cardAbilities = ""
-    let typing = getType(card.type);
     let typingSpan = getTypeSpan(card.type);
     card.abilities.forEach(ability => {
         let cost = getStamina(ability.cost);
@@ -250,16 +251,31 @@ function getTypeSpan(type) {
     }
 }
 
-function useAbility(ability, cardID, type, name) {
+function useAbility(ability, cardID, type, name, selection) {
     if (!inAttack) {
         let canPay = checkCost(ability.cost)
 
         if (canPay) {
+            if (ability.type === 'attack') {
+                selection.classList.add('selected-ability')
+                enemies.childNodes.forEach(enemy => {
+                    enemy.classList.add('target-enemy')
+                })
+            }
             enactAbility(ability, type, cardID, name);
         } else {
             playSFX('discard');
             flashError("playerStats");
         }
+    } else if (ability.type === 'attack' && selection.classList.contains('selected-ability')) {
+        selection.classList.remove('selected-ability');
+        inAttack = false;
+        player.currentAttack = null;
+        player.currentAttackType = null;
+        player.currentCardID = null;
+        enemies.childNodes.forEach(enemy => {
+            enemy.classList.remove('target-enemy')
+        })
     }
 }
 
@@ -468,7 +484,7 @@ function endTurn() {
     }
 
     if (currentLoc.difficulty === 'boss1' || currentLoc.difficulty === 'boss2') {
-        currentEnemies.forEach((enemy, index) => {
+        currentEnemies.forEach((enemy) => {
             if (enemy.enemyType === 'boss') {
                 enemy.moveNum++;
                 if (enemy.moveNum > enemy.cardList.length - 1) {
@@ -626,7 +642,7 @@ function enactAbility(ability, type, cardID, name) {
         player.currentAttack = ability;
         player.currentAttackType = type;
         player.currentCardID = cardID;
-        showEnemiesToAttack(ability);
+        // attackEnemies();
     }
     if (ability.type === "heal") {
         heal(ability.damage)
@@ -661,21 +677,27 @@ function heal(healAmount) {
     }
 }
 
-function showEnemiesToAttack(ability) {
-    let popUp = document.getElementById('modal-content')
-    popUp.innerHTML = "";
-    popUp.innerHTML += "<h2>Select Enemy to Attack</h2>"
-    popUp.innerHTML += "<p style='padding: 5px; background-color: black; color: white; width: 90px; margin: 0 auto; margin-top: 10px; margin-bottom: 10px;'>Chosen Attack<br><br><span style='position: relative; top: -5px;'>" + player.currentAttack.damage + "</span><span class='icon icon-" + player.currentAttackType + "' style='float: none; display: inline-block; margin-left: 8px;'></span></p>"
-    popUp.innerHTML += "<div id='enemy-row' class='popup-row'></div>";
-    let enemyRow = document.getElementById('enemy-row');
-    currentEnemies.forEach((enemy, index) => {
-        let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-        let newEnemy = "<div id='enemy" + index + "' class='enemies enemytarget' onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
-        enemyRow.innerHTML += newEnemy;
-    });
-    popUp.innerHTML += "<br><br><div id='cancelAttack' class='popup-button' onClick='closePopupAttack()'>Cancel Attack</div>"
-    let popUpContainer = document.getElementById('modal-container');
-    popUpContainer.classList.remove('hidden');
+function attackEnemies() {
+
+    // if (selection.classList.contains('selected-ability')) {
+    //     selection.classList.remove('selected-ability')
+    // } else {
+    //     selection.classList.add('selected-ability')
+    // }
+    // let popUp = document.getElementById('modal-content')
+    // popUp.innerHTML = "";
+    // popUp.innerHTML += "<h2>Select Enemy to Attack</h2>"
+    // popUp.innerHTML += "<p style='padding: 5px; background-color: black; color: white; width: 90px; margin: 0 auto; margin-top: 10px; margin-bottom: 10px;'>Chosen Attack<br><br><span style='position: relative; top: -5px;'>" + player.currentAttack.damage + "</span><span class='icon icon-" + player.currentAttackType + "' style='float: none; display: inline-block; margin-left: 8px;'></span></p>"
+    // popUp.innerHTML += "<div id='enemy-row' class='popup-row'></div>";
+    // let enemyRow = document.getElementById('enemy-row');
+    // currentEnemies.forEach((enemy, index) => {
+    //     let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
+    //     let newEnemy = "<div id='enemy" + index + "' class='enemies enemytarget' onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
+    //     enemyRow.innerHTML += newEnemy;
+    // });
+    // popUp.innerHTML += "<br><br><div id='cancelAttack' class='popup-button' onClick='closePopupAttack()'>Cancel Attack</div>"
+    // let popUpContainer = document.getElementById('modal-container');
+    // popUpContainer.classList.remove('hidden');
 }
 
 function discardCardDamage(totalDamage, finalDamage, blockNum) {
@@ -745,7 +767,7 @@ function attackEnemy(enemy, id) {
         }
     }
 
-    closePopup();
+    // closePopup();
 
     dropCard(player.currentAttack, player.currentCardID);
     reduceStamina(player.currentAttack.cost);
