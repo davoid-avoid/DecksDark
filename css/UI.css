@@ -180,6 +180,11 @@ h3 {
 .selected-ability {
     background-color: darkgrey;
 }
+
+.selected-ability:hover  {
+    background-color: darkgrey !important;
+}
+
 .ability {
     width: 100%;
     float: left;
@@ -195,7 +200,7 @@ h3 {
 }
 
 .ability:hover {
-    background-color: darkgrey;
+    background-color: grey;
 }
 
 .discard {
