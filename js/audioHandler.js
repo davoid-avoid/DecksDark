@@ -49,17 +49,9 @@ let musicList = ["map", "easy", "medium", "hard", "boss1", "boss2", "endbattle",
 function fadeOutAll(key) {
     musicList.forEach(song => {
         if (song !== key) {
-            //musicTracks[song].fade(masterVolume, 0, 1000);
             SM.stopMusic(song, 500)
-        } else {
-
-            //musicTracks[song].volume(masterVolume);
         }
     })
-
-}
-
-function fadeSong(endVol, time){
 
 }
 
@@ -67,7 +59,6 @@ function playMusic(key) {
     fadeOutAll(key);
     setTimeout(function(){
         var currentPlaying = SM.playMusic(key, -1, 1)
-       // currentPlaying.volume = masterVolume;
     }, 1000)
 }
 
@@ -79,11 +70,9 @@ function soundControl(){
 
     let volume = createjs.Sound.muted;
     if (volume === false){
-
         createjs.Sound.muted = true;
     }
     if (volume === true){
-
         createjs.Sound.muted = false;
     }
     updateReadout();
