@@ -114,6 +114,7 @@ function popupDeck(targetDeck){
         }
 
         popUp.innerHTML += "<p>Currently held souls: <b>" + player.treasure.souls + "</b><span class='icon icon-souls-inv icon-p'></span></p>";
+        popUp.innerHTML += "<p>Cost to level up: <b>" + levelCost + "</b><span class='icon icon-souls-inv icon-p'></span></p>";
         
     }
 
