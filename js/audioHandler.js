@@ -268,6 +268,11 @@ var SM = (function(){
             if(o && o.playing){
                 o.fadeType = "FADE_OUT";
                 o.fadeStep = ((o.instance.volume*1000)/(60*fadeOut)).toFixed(2);
+
+                if (o.instance.volume === 0){
+                    console.log('ended')
+                    o.playing = false;
+                }
             }
         }
     };
