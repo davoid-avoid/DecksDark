@@ -641,6 +641,7 @@ function enactAbility(ability, type, cardID, name) {
         player.currentAttack = ability;
         player.currentAttackType = type;
         player.currentCardID = cardID;
+        playSFX('enableweapon')
         // attackEnemies();
     }
     if (ability.type === "heal") {

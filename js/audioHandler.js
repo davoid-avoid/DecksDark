@@ -137,6 +137,20 @@ let musicTracks = {
         volume: masterVolume,
         buffer: true
     }),
+    "enableweapon": new Howl({
+        src: ['./assets/sound/readyweapon.wav'],
+        autoplay: false,
+        loop: false,
+        volume: masterVolume,
+        buffer: true
+    }),
+    "disableweapon": new Howl({
+        src: ['./assets/sound/disableweapon.wav'],
+        autoplay: false,
+        loop: false,
+        volume: masterVolume,
+        buffer: true
+    }),
 }
 
 let musicList = ["map", "easy", "medium", "hard", "boss1", "boss2", "endbattle", "returnbonfire"]
