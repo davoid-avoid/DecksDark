@@ -109,12 +109,11 @@ function getEnemies(difficultyArray) {
 function renderEnemies(enemies) {
     let enemiesEl = document.getElementById('enemies');
     enemiesEl.innerHTML = "";
-    let wordsss = "hello"
 
     enemies.forEach((enemy, index) => {
         console.log(enemy)
         let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-        let newEnemy = "<div onClick='console.log(\"hello\")' id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
+        let newEnemy = "<div onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")' id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
         enemiesEl.innerHTML += newEnemy;
 
         setTimeout(function () {
@@ -778,6 +777,9 @@ function attackEnemy(enemy, id) {
     player.currentAttackType = "";
     player.currentCardID = "";
     updateReadout();
+    enemies.childNodes.forEach(enemy => {
+        enemy.classList.remove('target-enemy')
+    })
 
     if (currentEnemies.length === 0) {
         endOfBattle();
