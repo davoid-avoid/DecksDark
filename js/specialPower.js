@@ -1,22 +1,28 @@
 function useSpecialPowerPrompt() {
-    if (player.power === true) {
-        let popUp = document.getElementById('modal-content')
-        popUp.innerHTML = "";
+    if (!inAttack) {
+        if (player.power === true) {
+            let popUp = document.getElementById('modal-content')
+            popUp.innerHTML = "";
 
-        popUp.innerHTML += "<h3>Use Special Power?</h3><br>"
+            popUp.innerHTML += "<h3>Use Special Power?</h3><br>"
 
-        popUp.innerHTML += "<p>Special Power: " + player.specPower + "</p><br>"
+            popUp.innerHTML += "<p>Special Power: " + player.specPower + "</p><br>"
 
-        popUp.innerHTML += "<h2>Power can be used once per bonfire</h2><br>"
+            popUp.innerHTML += "<h2>Power can be used once per bonfire</h2><br>"
 
 
-        popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='useSpecialPower()'>Yes</div><br><br>";
+            popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='useSpecialPower()'>Yes</div><br><br>";
 
-        popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='closePopup()'>No</div>";
+            popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='closePopup()'>No</div>";
 
-        let popUpContainer = document.getElementById('modal-container');
-        popUpContainer.classList.remove('hidden');
+            let popUpContainer = document.getElementById('modal-container');
+            popUpContainer.classList.remove('hidden');
 
+        }
+    } else {
+        playSFX('discard')
+        flashError('card' + player.currentCardID)
+        flashError('player-attack')
     }
 }
 

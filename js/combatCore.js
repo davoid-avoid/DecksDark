@@ -280,6 +280,7 @@ function useAbility(ability, cardID, type, name, selection) {
     } else {
         playSFX('discard')
         flashError('card' + player.currentCardID)
+        flashError('player-attack')
     }
 }
 
@@ -395,7 +396,7 @@ function drawDeckOK() {
 }
 
 function discardCard(id, source) {
-    if (!inAttack){
+    if (source !== 'board') {
         let cardEl = document.getElementById('card' + id);
         cardEl.remove();
         player.hand.forEach((card, index) => {
@@ -410,8 +411,25 @@ function discardCard(id, source) {
         drawCard();
         updateReadout();
     } else {
-        playSFX('discard')
-        flashError('card' + player.currentCardID)
+        if (!inAttack) {
+            let cardEl = document.getElementById('card' + id);
+            cardEl.remove();
+            player.hand.forEach((card, index) => {
+                if (card.deckID === id) {
+                    player.discardDeck.push(player.hand[index]);
+                    player.hand.splice(index, 1);
+                }
+            })
+            if (source === 'board') {
+                playSFX('discard');
+            }
+            drawCard();
+            updateReadout();
+        } else {
+            playSFX('discard')
+            flashError('card' + player.currentCardID)
+            flashError('player-attack')
+        }
     }
 }
 
@@ -468,19 +486,25 @@ function drawCard() {
 }
 
 function endTurnPrompt() {
-    let popUp = document.getElementById('modal-content')
-    popUp.innerHTML = "";
+    if (!inAttack) {
+        let popUp = document.getElementById('modal-content')
+        popUp.innerHTML = "";
 
-    popUp.innerHTML += "<h3>End Turn?</h3><br>"
+        popUp.innerHTML += "<h3>End Turn?</h3><br>"
 
 
-    popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='endTurn()'>Yes</div><br><br>";
+        popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='endTurn()'>Yes</div><br><br>";
 
-    popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='closePopup()'>No</div>";
+        popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='closePopup()'>No</div>";
 
-    let popUpContainer = document.getElementById('modal-container');
-    popUpContainer.classList.remove('hidden');
-    playSFX('endturn');
+        let popUpContainer = document.getElementById('modal-container');
+        popUpContainer.classList.remove('hidden');
+        playSFX('endturn');
+    } else {
+        playSFX('discard')
+        flashError('card' + player.currentCardID)
+        flashError('player-attack')
+    }
 }
 
 function endTurn() {
@@ -517,31 +541,37 @@ function resetStamina() {
 }
 
 function claimDiscard() {
-    if (player.discardDeck.length > 0) {
-        let popUp = document.getElementById('modal-content')
-        popUp.innerHTML = "";
-        popUp.innerHTML += "<h2>Select A Card to Lose from Discard</h2>"
-        popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
-        let cardRow = document.getElementById('card-row');
-        player.discardDeck.forEach(card => {
-            renderCardDiscard(card)
-        })
-        if (player.currentDamage === 0) {
-            popUp.innerHTML += "<br><br><div id='popupok' class='popup-button' onClick='closePopup()'>Cancel</div>";
-        }
-        let popUpContainer = document.getElementById('modal-container');
-        popUpContainer.classList.remove('hidden');
-    } else {
-        if (player.lostDeck.length === player.drawDeckSize) {
-            if (map.rests > 0) {
-                death();
-                resetStamina();
-            } else {
-                gameOver();
+    if (!inAttack) {
+        if (player.discardDeck.length > 0) {
+            let popUp = document.getElementById('modal-content')
+            popUp.innerHTML = "";
+            popUp.innerHTML += "<h2>Select A Card to Lose from Discard</h2>"
+            popUp.innerHTML += "<div id='card-row' class='popup-row'></div>";
+            let cardRow = document.getElementById('card-row');
+            player.discardDeck.forEach(card => {
+                renderCardDiscard(card)
+            })
+            if (player.currentDamage === 0) {
+                popUp.innerHTML += "<br><br><div id='popupok' class='popup-button' onClick='closePopup()'>Cancel</div>";
+            }
+            let popUpContainer = document.getElementById('modal-container');
+            popUpContainer.classList.remove('hidden');
+        } else {
+            if (player.lostDeck.length === player.drawDeckSize) {
+                if (map.rests > 0) {
+                    death();
+                    resetStamina();
+                } else {
+                    gameOver();
+                }
             }
         }
+        updateReadout()
+    } else {
+        playSFX('discard')
+        flashError('card' + player.currentCardID)
+        flashError('player-attack')
     }
-    updateReadout()
 }
 
 function loseCardDiscard(cardID) {
@@ -631,7 +661,9 @@ function displayNoDamage(totalDamage, blockNum) {
 }
 
 function dropCard(ability, cardID) {
+    console.log(cardID)
     if (ability.useage === "discard") {
+        console.log(ability)
         discardCard(cardID);
     } else {
         loseCard(cardID);
