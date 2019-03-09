@@ -41,9 +41,9 @@ function updateReadout() {
     }
 
     let lostDeckRed = pickHex([255, 0, 0],[255, 255, 255], (player.lostDeck.length/player.drawDeckSize))
-    let volume = Howler.volume();
+    let volume = createjs.Sound.muted;
     let volumeButton = ""
-    if (volume > 0){
+    if (volume === false){
         volumeButton = '<p class="readout-button"  onClick="soundControl()"><span class="icon icon-sound-on" id="sound-control"></span>On</p><br><br>'
     } else {
         volumeButton = '<p class="readout-button"  onClick="soundControl()"><span class="icon icon-sound-off" id="sound-control"></span>Off</p><br><br>'
@@ -220,17 +220,4 @@ function drawStamina() {
     playerStats.innerHTML += FAI;
 }
 
-function soundControl(){
 
-    let volume = Howler.volume();
-    console.log(volume)
-    if (volume > 0){
-
-        Howler.volume(0)
-    }
-    if (volume === 0){
-
-        Howler.volume(masterVolume)
-    }
-    updateReadout();
-}

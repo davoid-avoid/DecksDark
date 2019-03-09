@@ -249,10 +249,9 @@ function setRoomToComplete(room) {
 
 function returnToMap() {
 
-    console.log(musicTracks.map.playing())
-    if (!musicTracks.map.playing()){
-        playMusic('map');
-    }
+
+    playMusic('map');
+
 
     player.dead = false;
     resetStamina();
