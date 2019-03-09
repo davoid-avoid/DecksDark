@@ -16,21 +16,26 @@
 }
 
 .character-image-knight {
-    background-image: url('../assets/characters/knight.png')
-}
-
-.character-image-sorcerer {
-    background-image: url('../assets/characters/sorcerer.png')
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: 0px 0px; 
 }
 
 .character-image-assassin {
-    background-image: url('../assets/characters/thief.png')
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: -50px 0px; 
+}
+
+.character-image-sorcerer {
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: -100px 0px; 
 }
 
 .character-image-herald {
-    background-image: url('../assets/characters/herald.png')
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: -150px 0px; 
 }
 
 .character-image-random {
-    background-image: url('../assets/characters/random.png')
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: -200px 0px; 
 }

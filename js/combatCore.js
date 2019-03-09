@@ -835,7 +835,7 @@ function gainRewards(loc) {
         let treasureCopy = copyObj(treasureCards[i])
         treasureCopy.abilities = [];
         treasureCards[i].abilities.forEach(ability => {
-            treasureCopy.abilities.push(ability)
+            treasureCopy.abilities.push(copyObj(ability))
         })
         player.treasure.cards.push(treasureCopy)
     }
@@ -850,7 +850,7 @@ function gainBossRewards(loc) {
         let treasureCopy = copyObj(bossTreasureCards[i])
         treasureCopy.abilities = [];
         bossTreasureCards[i].abilities.forEach(ability => {
-            treasureCopy.abilities.push(ability)
+            treasureCopy.abilities.push(copyObj(ability))
         })
         player.treasure.cards.push(treasureCopy)
     }
