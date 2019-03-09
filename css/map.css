@@ -29,6 +29,9 @@
     cursor: pointer;
     opacity: 1;
 }
+.location-open:hover {
+    background-color: #666;
+}
 
 .location-complete {
     opacity: 1;
