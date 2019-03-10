@@ -160,15 +160,25 @@ function closePopup() {
 }
 
 
-function drawStamina() {
+function drawStamina(cost = {
+    strength: 0,
+    dexterity: 0,
+    magic: 0,
+    faith: 0
+}) {
     let playerStats = document.getElementById('playerStats');
     playerStats.innerHTML = "";
 
     //STR
     let strAmount = "";
     for (s = 0; s < player.stats.strength; s++) {
-        if (s < player.currentStats.strength) {
+        if (inAttack) {
+
+        }
+        if (s < (player.currentStats.strength - cost.strength)) {
             strAmount += "<div class='strengthstat stat'></div>"
+        } else if (s < player.currentStats.strength) {
+            strAmount += "<div class='strengthstat stat statCost'></div>"
         } else {
             strAmount += "<div class='spentStat stat'></div>"
         }
@@ -181,8 +191,10 @@ function drawStamina() {
     //DEX
     let dexAmount = "";
     for (d = 0; d < player.stats.dexterity; d++) {
-        if (d < player.currentStats.dexterity) {
+        if (d < player.currentStats.dexterity - cost.dexterity) {
             dexAmount += "<div class='dexteritystat stat'></div>"
+        } else if (d < player.currentStats.dexterity) {
+            dexAmount += "<div class='dexteritystat stat statCost'></div>"
         } else {
             dexAmount += "<div class='spentStat stat'></div>"
         }
@@ -195,8 +207,10 @@ function drawStamina() {
     //MAG
     let magAmount = "";
     for (m = 0; m < player.stats.magic; m++) {
-        if (m < player.currentStats.magic) {
+        if (m < player.currentStats.magic - cost.magic) {
             magAmount += "<div class='magicstat stat'></div>"
+        } else if (m < player.currentStats.magic) {
+            magAmount += "<div class='magicstat stat statCost'></div>"
         } else {
             magAmount += "<div class='spentStat stat'></div>"
         }
@@ -209,8 +223,10 @@ function drawStamina() {
     //FAI
     let faiAmount = "";
     for (f = 0; f < player.stats.faith; f++) {
-        if (f < player.currentStats.faith) {
+        if (f < player.currentStats.faith - cost.faith) {
             faiAmount += "<div class='faithstat stat'></div>"
+        } else if (f < player.currentStats.faith) {
+            faiAmount += "<div class='faithstat stat statCost'></div>"
         } else {
             faiAmount += "<div class='spentStat stat'></div>"
         }

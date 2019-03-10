@@ -276,7 +276,8 @@ function useAbility(ability, cardID, type, name, selection) {
             enemy.classList.remove('target-enemy')
         })
         playSFX('disableweapon')
-        updateReadout()
+        updateReadout();
+        drawStamina();
     } else {
         playSFX('discard')
         flashError('card' + player.currentCardID)
@@ -683,7 +684,8 @@ function enactAbility(ability, type, cardID, name) {
         player.currentAttack = ability;
         player.currentAttackType = type;
         player.currentCardID = cardID;
-        playSFX('enableweapon')
+        playSFX('enableweapon');
+        drawStamina(ability.cost);
         // attackEnemies();
     }
     if (ability.type === "heal") {
@@ -692,7 +694,6 @@ function enactAbility(ability, type, cardID, name) {
         reduceStamina(ability.cost);
         drawStamina();
         drawHand();
-
     }
 
     if (ability.type === "special") {
@@ -717,29 +718,6 @@ function heal(healAmount) {
         heal(healAmount);
         playSFX('heal');
     }
-}
-
-function attackEnemies() {
-
-    // if (selection.classList.contains('selected-ability')) {
-    //     selection.classList.remove('selected-ability')
-    // } else {
-    //     selection.classList.add('selected-ability')
-    // }
-    // let popUp = document.getElementById('modal-content')
-    // popUp.innerHTML = "";
-    // popUp.innerHTML += "<h2>Select Enemy to Attack</h2>"
-    // popUp.innerHTML += "<p style='padding: 5px; background-color: black; color: white; width: 90px; margin: 0 auto; margin-top: 10px; margin-bottom: 10px;'>Chosen Attack<br><br><span style='position: relative; top: -5px;'>" + player.currentAttack.damage + "</span><span class='icon icon-" + player.currentAttackType + "' style='float: none; display: inline-block; margin-left: 8px;'></span></p>"
-    // popUp.innerHTML += "<div id='enemy-row' class='popup-row'></div>";
-    // let enemyRow = document.getElementById('enemy-row');
-    // currentEnemies.forEach((enemy, index) => {
-    //     let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-    //     let newEnemy = "<div id='enemy" + index + "' class='enemies enemytarget' onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
-    //     enemyRow.innerHTML += newEnemy;
-    // });
-    // popUp.innerHTML += "<br><br><div id='cancelAttack' class='popup-button' onClick='closePopupAttack()'>Cancel Attack</div>"
-    // let popUpContainer = document.getElementById('modal-container');
-    // popUpContainer.classList.remove('hidden');
 }
 
 function discardCardDamage(totalDamage, finalDamage, blockNum) {
@@ -807,22 +785,22 @@ function attackEnemy(enemy, id) {
             console.log(currentEnemies);
             playSFX('kill');
         }
+
+        // closePopup();
+
+        dropCard(player.currentAttack, player.currentCardID);
+        reduceStamina(player.currentAttack.cost);
+        drawStamina();
+
+        inAttack = false;
+        player.currentAttack = {};
+        player.currentAttackType = "";
+        player.currentCardID = "";
+        updateReadout();
+        enemies.childNodes.forEach(enemy => {
+            enemy.classList.remove('target-enemy')
+        });
     }
-
-    // closePopup();
-
-    dropCard(player.currentAttack, player.currentCardID);
-    reduceStamina(player.currentAttack.cost);
-    drawStamina();
-
-    inAttack = false;
-    player.currentAttack = {};
-    player.currentAttackType = "";
-    player.currentCardID = "";
-    updateReadout();
-    enemies.childNodes.forEach(enemy => {
-        enemy.classList.remove('target-enemy')
-    })
 
     if (currentEnemies.length === 0) {
         endOfBattle();
