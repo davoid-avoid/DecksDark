@@ -140,6 +140,11 @@
     background-position: -1500px 0px;
 }
 
+.enemy-image-yeti {
+    background-image: url('../assets/enemies/character-strip.png');
+    background-position: -1950px 0px;
+}
+
 
 .enemy-image-gravelord-follower {
     background-image: url('../assets/enemies/character-strip.png');

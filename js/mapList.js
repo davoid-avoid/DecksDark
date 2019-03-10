@@ -165,6 +165,90 @@ let mapList = [
             },
 
         ]
+    },
+    {
+        "name": "map3",
+        "rests": 5,
+        "locations": [
+            {
+                "name": "bonfire",
+                "difficulty": "bonfire",
+                "dependencies": [],
+                "x": 416,
+                "y": 400
+            },
+            {
+                "name": "1-1",
+                "difficulty": "easy",
+                "dependencies": [],
+                "x": 404,
+                "y": 165
+            },
+            {
+                "name": "1-2",
+                "difficulty": "hard",
+                "dependencies": ["1-1"],
+                "x": 269,
+                "y": 24
+            },
+            {
+                "name": "2-1",
+                "difficulty": "medium",
+                "dependencies": [],
+                "x": 579,
+                "y": 392
+            },
+            {
+                "name": "2-2",
+                "difficulty": "medium",
+                "dependencies": ["2-1", "1-1"],
+                "x": 582,
+                "y": 202
+            },
+            {
+                "name": "3-1",
+                "difficulty": "hard",
+                "dependencies": ["1-1", "3-2"],
+                "x": 256,
+                "y": 251
+            },
+            {
+                "name": "3-2",
+                "difficulty": "medium",
+                "dependencies": ["3-1", "4-2"],
+                "x": 102,
+                "y": 226
+            },
+            {
+                "name": "4-1",
+                "difficulty": "easy",
+                "dependencies": [],
+                "x": 259,
+                "y": 417
+            },
+            {
+                "name": "4-2",
+                "difficulty": "medium",
+                "dependencies": ["4-1", "3-2"],
+                "x": 59,
+                "y": 393
+            },
+            {
+                "name": "boss 1",
+                "difficulty": "boss",
+                "dependencies": ["1-2", "2-2"],
+                "x": 584,
+                "y": 21
+            },
+            {
+                "name": "boss 2",
+                "difficulty": "boss",
+                "dependencies": ["3-2"],
+                "x": 77,
+                "y": 38
+            },
+
+        ]
     }
 ]
 

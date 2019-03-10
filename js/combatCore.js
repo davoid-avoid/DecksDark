@@ -158,6 +158,24 @@ function renderCard(card) {
 
 }
 
+function renderCardNoFlip(card) {
+    let handEl = document.getElementById('cardHand');
+    let cardAbilities = ""
+    let typing = getType(card.type);
+    let typingSpan = getTypeSpan(card.type);
+    card.abilities.forEach(ability => {
+        let cost = getStamina(ability.cost);
+        if (ability.type !== 'special') {
+            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ", this)'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
+        } else {
+            cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ", this)'>" + " <span class='icon icon-" + ability.useage + "'></span>" + ability.text + "<br><br>" + cost + "<br></div>"
+        }
+    })
+
+    let newCard = "<div id='card" + card.deckID + "' class='card'><h2 class='card-title'>" + card.name + "</h2><h3>" + typingSpan + "</h3>" + cardAbilities + "<div class='discard ability' onClick='discardCard(" + card.deckID + ")'><span class='icon icon-discard'></span></div></div>"
+    handEl.innerHTML += newCard;
+}
+
 function renderCardDiscard(card) {
     let cardRow = document.getElementById('card-row');
     let cardAbilities = ""
