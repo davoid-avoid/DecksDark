@@ -72,8 +72,8 @@
 
         <div id="map-screen" class="hidden">
             <div id="map" class="map">
-
             </div>
+            <div id="map-stats"></div>
         </div>
 
         <div id="tableau" class="hidden">
@@ -89,11 +89,12 @@
         <div id="ui-elements" class="hidden">
             <div class="row">
                 <div id="readout"></div>
-                <div id="playerStats"></div>
+                
                 <div class="col" id='battle-ui' class="hidden">
                     <div id="endTurn" class="UIButton" onClick="endTurnPrompt()">End Turn</div>
                     <div id="claimDiscard" class="UIButton" onClick="claimDiscard()">Reclaim Discarded
                         <span class='icon icon-discard' style="margin-left: 8px"></span>
+                        <span id="discard-count"></span>
                     </div>
                     <div id="specialPower" class="UIButton" onClick="useSpecialPowerPrompt()">Use Special Power</div>
                 </div>

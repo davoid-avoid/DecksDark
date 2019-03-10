@@ -267,7 +267,7 @@ function returnToMap() {
         addMapLocation(loc);
     })
 
-    let mapHolder = document.getElementById('map-screen')
+    let mapHolder = document.getElementById('map-screen');
     mapHolder.classList.remove('hidden');
     let generalUI = document.getElementById('ui-elements');
     generalUI.classList.remove('hidden')

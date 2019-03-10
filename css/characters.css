@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-.player-shifter {
+#battle-stats {
     width: 50px;
     height: 92px;
     position: relative;

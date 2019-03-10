@@ -44,8 +44,6 @@ function startBattle(roomName) {
     let battleUI = document.getElementById('battle-ui');
     battleUI.classList.remove('hidden')
 
-    renderPlayer();
-
     if (currentLoc.difficulty !== 'boss1' & currentLoc.difficulty !== 'boss2') {
         currentEnemies = getEnemies(currentLoc.room.content);
     } else {
@@ -63,13 +61,12 @@ function startBattle(roomName) {
             currentEnemies[index].enemyID = index;
             getBossMove();
         })
-
     }
     renderEnemies(currentEnemies);
     drawHand();
+    renderPlayer();
     updateReadout();
 
-    console.log(currentLoc.difficulty)
     playMusic(currentLoc.difficulty)
 }
 
@@ -86,9 +83,10 @@ function getBossMove() {
 
 function renderPlayer() {
     let characterEl = document.getElementById('battle-character')
-    characterCard = "<div class='enemies'><div class='player-shifter'></div><div id='player-attack'></div><div id='player-block'></div><div class='character-image character-image-" + player.class + "'></div>"
+    characterCard = "<div class='enemies'><div id='battle-stats'></div><div id='player-attack'></div><div id='player-block'></div><div class='character-image character-image-" + player.class + "'><div class='readout-button lost' onClick='popupDeck(\"lostDeck\")'><span class='icon icon-lost'></span><span id='lost-count'>" + player.lostDeck.length + " / " + player.drawDeckSize + "</span></div></div>"
     characterEl.innerHTML = "";
     characterEl.innerHTML += characterCard;
+    drawStamina();
 }
 
 function getEnemies(difficultyArray) {
@@ -111,9 +109,8 @@ function renderEnemies(enemies) {
     enemiesEl.innerHTML = "";
 
     enemies.forEach((enemy, index) => {
-        console.log(enemy)
         let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-        let newEnemy = "<div onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")' id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
+        let newEnemy = "<div onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")' id='enemy" + index + "' class='card flipped enemies'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
         enemiesEl.innerHTML += newEnemy;
 
         setTimeout(function () {
@@ -160,24 +157,6 @@ function renderCard(card) {
     }, 1)
 
 }
-
-// function renderCardNoFlip(card) {
-//     let handEl = document.getElementById('cardHand');
-//     let cardAbilities = ""
-//     let typing = getType(card.type);
-//     let typingSpan = getTypeSpan(card.type);
-//     card.abilities.forEach(ability => {
-//         let cost = getStamina(ability.cost);
-//         if (ability.type !== 'special') {
-//             cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span> <span class='icon icon-" + ability.type + "'></span> " + ability.damage + "<br><br>" + cost + "<br></div>"
-//         } else {
-//             cardAbilities += "<div class='ability' onClick='useAbility(" + JSON.stringify(ability) + ", " + card.deckID + ", " + JSON.stringify(typing) + ", " + JSON.stringify(card.name) + ")'>" + " <span class='icon icon-" + ability.useage + "'></span>" + ability.text + "<br><br>" + cost + "<br></div>"
-//         }
-//     })
-
-//     let newCard = "<div id='card" + card.deckID + "' class='card'><h2 class='card-title'>" + card.name + "</h2><h3>" + typingSpan + "</h3>" + cardAbilities + "<div class='discard ability' onClick='discardCard(" + card.deckID + ")'><span class='icon icon-discard'></span></div></div>"
-//     handEl.innerHTML += newCard;
-// }
 
 function renderCardDiscard(card) {
     let cardRow = document.getElementById('card-row');
@@ -264,7 +243,7 @@ function useAbility(ability, cardID, type, name, selection) {
             enactAbility(ability, type, cardID, name);
         } else {
             playSFX('discard');
-            flashError("playerStats");
+            flashError("battle-stats");
         }
     } else if (ability.type === 'attack' && selection.classList.contains('selected-ability')) {
         selection.classList.remove('selected-ability');
@@ -478,11 +457,6 @@ function drawCard() {
         let handEl = document.getElementById('cardHand');
         renderCard(player.hand[player.hand.length - 1]);
     }
-    /*
-    if (player.drawDeck.length === 0 && player.hand.length === 0 && player.discardDeck.length !== 1) {
-        claimDiscard();
-    }
-    */
 }
 
 function endTurnPrompt() {
@@ -513,6 +487,7 @@ function endTurn() {
 
     if (!inAttack) {
         resetStamina();
+        console.log('made it to the end turn')
         enemyAttack();
     }
 
@@ -611,14 +586,16 @@ function moveDiscardToDraw() {
 
 function enemyAttack() {
     let totalDamage = 0;
-
+    
     currentEnemies.forEach(enemy => {
+        console.log(enemy)
         if (!isNaN(enemy.attack)) {
             totalDamage += enemy.attack
         }
     })
-
+    
     currentEnemies.forEach(enemy => {
+        console.log(enemy)
         if (!isNaN(enemy.attack)) {
 
         } else {
@@ -631,6 +608,7 @@ function enemyAttack() {
     })
 
     let finalDamage = (totalDamage - player.block);
+    
     if (finalDamage < 0) {
         finalDamage = 0;
     }
@@ -661,9 +639,7 @@ function displayNoDamage(totalDamage, blockNum) {
 }
 
 function dropCard(ability, cardID) {
-    console.log(cardID)
     if (ability.useage === "discard") {
-        console.log(ability)
         discardCard(cardID);
     } else {
         loseCard(cardID);
@@ -684,7 +660,6 @@ function enactAbility(ability, type, cardID, name) {
         player.currentAttackType = type;
         player.currentCardID = cardID;
         playSFX('enableweapon')
-        // attackEnemies();
     }
     if (ability.type === "heal") {
         heal(ability.damage)
@@ -719,30 +694,8 @@ function heal(healAmount) {
     }
 }
 
-function attackEnemies() {
-
-    // if (selection.classList.contains('selected-ability')) {
-    //     selection.classList.remove('selected-ability')
-    // } else {
-    //     selection.classList.add('selected-ability')
-    // }
-    // let popUp = document.getElementById('modal-content')
-    // popUp.innerHTML = "";
-    // popUp.innerHTML += "<h2>Select Enemy to Attack</h2>"
-    // popUp.innerHTML += "<p style='padding: 5px; background-color: black; color: white; width: 90px; margin: 0 auto; margin-top: 10px; margin-bottom: 10px;'>Chosen Attack<br><br><span style='position: relative; top: -5px;'>" + player.currentAttack.damage + "</span><span class='icon icon-" + player.currentAttackType + "' style='float: none; display: inline-block; margin-left: 8px;'></span></p>"
-    // popUp.innerHTML += "<div id='enemy-row' class='popup-row'></div>";
-    // let enemyRow = document.getElementById('enemy-row');
-    // currentEnemies.forEach((enemy, index) => {
-    //     let healthbar = "<div class='enemyHP-outer'><div class='enemyHP-inner' style='width: " + ((enemy.hp / enemy.currHP) * 100) + "%'></div></div>"
-    //     let newEnemy = "<div id='enemy" + index + "' class='enemies enemytarget' onClick='attackEnemy(" + JSON.stringify(enemy) + ", " + index + ")'><h2>" + enemy.name + "</h2><br>" + healthbar + "<p><span class='icon icon-health'></span>" + enemy.hp + "</p><p><span class='icon icon-defend'></span><span style='float: left'>" + enemy.shield + " / </span><span class='icon icon-" + enemy.weakness + "' style='margin-left: 5px'></span></p><br><p><span class='icon icon-attack'></span>" + enemy.attack + "</p><br><div class='enemy-image enemy-image-" + enemy.image + "'></div></div>";
-    //     enemyRow.innerHTML += newEnemy;
-    // });
-    // popUp.innerHTML += "<br><br><div id='cancelAttack' class='popup-button' onClick='closePopupAttack()'>Cancel Attack</div>"
-    // let popUpContainer = document.getElementById('modal-container');
-    // popUpContainer.classList.remove('hidden');
-}
-
 function discardCardDamage(totalDamage, finalDamage, blockNum) {
+    console.log(finalDamage)
     if (player.hand.length > 0 || player.drawDeck.length > 0) {
         let popUp = document.getElementById('modal-content')
         popUp.innerHTML = ""
@@ -804,12 +757,9 @@ function attackEnemy(enemy, id) {
             let enemiesEl = document.getElementById('enemies');
             enemiesEl.innerHTML = "";
             renderEnemies(currentEnemies)
-            console.log(currentEnemies);
             playSFX('kill');
         }
     }
-
-    // closePopup();
 
     dropCard(player.currentAttack, player.currentCardID);
     reduceStamina(player.currentAttack.cost);
@@ -837,7 +787,6 @@ function endOfBattle() {
         resetStamina();
         returnHand();
         setRoomToComplete(currentLoc);
-        console.log(currentLoc)
         if (currentLoc.difficulty === 'boss1' || currentLoc.difficulty === 'boss2') {
 
             map.bossesCompleted++;
@@ -847,7 +796,6 @@ function endOfBattle() {
                 if (map.rests > 0) {
                     gainBossRewards(currentLoc);
                 } else {
-                    //alert('bonfire has gone out. No more treasure or souls awarded.')
                     showTreasureGained();
                 }
             }
@@ -947,9 +895,6 @@ function gameOver() {
     mapInner.innerHTML = "";
     map.classList.add('hidden');
 
-    //resetCompleted();
-    //mapStart();
-
     player = {
         "class": "",
         "hand": [],
@@ -1005,9 +950,6 @@ function winGame() {
     mapInner.innerHTML = "";
     map.classList.add('hidden');
 
-    //resetCompleted();
-    //mapStart();
-
     player = {
         "class": "",
         "hand": [],
@@ -1042,7 +984,6 @@ function winGame() {
 function death() {
     resetStatus();
     player.dead = true;
-    console.log(player);
 
     resetDrawDeck();
     resetCompleted();
@@ -1076,4 +1017,3 @@ function death() {
     }, 5)
 
 }
-

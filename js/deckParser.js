@@ -26,10 +26,6 @@ var player = {
     "currentDamage": 0
 }
 
-function confirmSelectClass(selectedClass){
-
-}
-
 function createPlayerObject(selectedClass){
     player.class = selectedClass;
     player.drawDeck = [];
@@ -38,7 +34,7 @@ function createPlayerObject(selectedClass){
     if (selectedClass === "random"){
         randomPlayerObject();
     } else {
-        startingClasses.forEach((classtype, index) => {
+        startingClasses.forEach((classtype) => {
             if (classtype.name === selectedClass){
                 player.stats = copyObj(classtype.stats);
                 player.currentStats = copyObj(classtype.stats);
@@ -75,9 +71,7 @@ function createPlayerObject(selectedClass){
     let powerButton = document.getElementById('specialPower');
     powerButton.innerHTML = "Special Power: " + player.specPower;
 
-    //drawHand();
-    drawStamina();
-    //startBattle();
+    // drawStamina();
     createTreasureDeck();
     mapStart();
 }

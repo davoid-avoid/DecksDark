@@ -18,7 +18,17 @@ function closePopupAttack() {
 }
 
 function updateReadout() {
+    let lostDeckRed = pickHex([255, 0, 0],[255, 255, 255], (player.lostDeck.length/player.drawDeckSize))
     let readout = document.getElementById('readout');
+    let discardCount = document.getElementById('discard-count');
+    let lostCount = document.getElementById('lost-count');
+
+    discardCount.innerHTML = player.discardDeck.length;
+    
+    if (lostCount) {
+        lostCount.innerHTML = player.lostDeck.length + ' / ' + player.drawDeckSize;
+        lostCount.style = 'color: rgb(' + lostDeckRed.join() + ')';
+    }
 
     let blockRead = ""
     if (player.block > 0) {
@@ -40,7 +50,6 @@ function updateReadout() {
         playerAttack.innerHTML += attackRead;
     }
 
-    let lostDeckRed = pickHex([255, 0, 0],[255, 255, 255], (player.lostDeck.length/player.drawDeckSize))
     let volume = createjs.Sound.muted;
     let volumeButton = ""
     if (volume === false){
@@ -48,8 +57,8 @@ function updateReadout() {
     } else {
         volumeButton = '<p class="readout-button"  onClick="soundControl()"><span class="icon icon-sound-off" id="sound-control"></span>Off</p><br><br>'
     }
-    
-    readout.innerHTML = '<p class="readout-button" onClick="popupDeck(\'drawDeck\')"><span class="icon icon-drawdeck"></span>' + player.drawDeck.length + ' / ' + player.deckSize + '</p><p class="readout-button" onClick="popupDeck(\'discardDeck\')"><span class="icon icon-discard"></span>' + player.discardDeck.length + '</p><p class="readout-button" onClick="popupDeck(\'lostDeck\')"><span class="icon icon-lost"></span><span style="color: rgb(' + lostDeckRed.join() + ')">' + player.lostDeck.length + ' / ' + player.drawDeckSize + '</span></p><p class="readout-button" onClick="popupDeck(\'treasure\')"><span class="icon icon-treasure"></span>' + player.treasure.cards.length + '<br><br><span class="icon icon-souls"></span><span id="heldSouls">' + player.treasure.souls + ' </span></p>' + volumeButton;
+
+    readout.innerHTML = '<p class="readout-button" onClick="popupDeck(\'treasure\')"><span class="icon icon-treasure"></span>' + player.treasure.cards.length + '<br><br><span class="icon icon-souls"></span><span id="heldSouls">' + player.treasure.souls + ' </span></p>' + volumeButton;
 
     let powerButton = document.getElementById('specialPower');
 
@@ -136,7 +145,6 @@ function renderCardPopup(card, row) {
     console.log(row)
     let cardRow = document.getElementById(row);
     let cardAbilities = ""
-    let typing = getType(card.type);
     let typingSpan = getTypeSpan(card.type);
     card.abilities.forEach(ability => {
         let cost = getStamina(ability.cost);
@@ -159,10 +167,9 @@ function closePopup() {
     popUp.innerHTML = "";
 }
 
-
 function drawStamina() {
-    let playerStats = document.getElementById('playerStats');
-    playerStats.innerHTML = "";
+    battleStats = document.getElementById('battle-stats');
+    battleStats.innerHTML = "";
 
     //STR
     let strAmount = "";
@@ -175,8 +182,7 @@ function drawStamina() {
     }
 
     let STR = "<div class='playerStat'>Strength<br>" + strAmount + "</div><br>"
-    playerStats.innerHTML += STR;
-
+    battleStats.innerHTML += STR;
 
     //DEX
     let dexAmount = "";
@@ -189,8 +195,7 @@ function drawStamina() {
     }
 
     let DEX = "<div class='playerStat'>Dexterity<br>" + dexAmount + "</div><br>"
-    playerStats.innerHTML += DEX;
-
+    battleStats.innerHTML += DEX;
 
     //MAG
     let magAmount = "";
@@ -203,8 +208,7 @@ function drawStamina() {
     }
 
     let MAG = "<div class='playerStat'>Magic<br>" + magAmount + "</div><br>"
-    playerStats.innerHTML += MAG;
-
+    battleStats.innerHTML += MAG;
 
     //FAI
     let faiAmount = "";
@@ -217,7 +221,10 @@ function drawStamina() {
     }
 
     let FAI = "<div class='playerStat'>Faith<br>" + faiAmount + "</div><br>"
-    playerStats.innerHTML += FAI;
+    battleStats.innerHTML += FAI;
+    
+    let CARDS = '<div class="readout-button playerStat" onClick="popupDeck(\'drawDeck\')"><span class="icon icon-drawdeck"></span>' + parseInt(player.drawDeck.length) + ' / ' + player.deckSize + '</div>'
+    battleStats.innerHTML += CARDS;
 }
 
 
