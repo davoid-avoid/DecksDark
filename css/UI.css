@@ -88,7 +88,7 @@ body {
 .display-button {
     display: inline-block;
     padding: 5px;
-    border: 2px solid #000;
+    border-top: 2px solid #000;
 }
 
 .UIButton {
@@ -300,31 +300,30 @@ h3 {
   }
   
   /* Modal Content/Box */
-  .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
     text-align: center;
-  }
+}
 
-  .popup-button {
-      color: white;
-      padding: 20px;
-      background-color: black;
-      display: inline-block;
-      cursor: pointer;
+.popup-button {
+    color: white;
+    padding: 20px;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer;
+}
 
-  }
+.stash-button {
+    font-size: 11pt;
+    margin: 10px;
+    padding: 9px;
+}
 
-  .stash-button {
-      font-size: 11pt;
-      margin: 10px;
-      padding: 9px;
-  }
-
-  .popup-button:hover {
+.popup-button:hover {
     background-color: darkgrey;
 }
 
