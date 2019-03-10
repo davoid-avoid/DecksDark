@@ -129,7 +129,11 @@ function popupDeck(targetDeck){
         
     }
 
-    popUp.innerHTML += "<br><br><div id='popupok' class='popup-button' onClick='closePopup()'>OK</div>";
+    popUp.innerHTML += "<p class='display-button'>Click anywhere to close!<p>";
+    popUpContainer.onclick = () => {
+        closePopup();
+        popUpContainer.onclick = null
+    };
 }
 
 function renderCardPopup(card, row) {
