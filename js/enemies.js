@@ -224,6 +224,14 @@ let enemiesList = {
             "attack": 7,
             "image": 'horror'
         },
+        {
+            "name": "Yeti",
+            "hp": 18,
+            "shield": 0,
+            "weakness": "",
+            "attack": 10,
+            "image": 'yeti'
+        },
     ],
 
     "gravelord": [
