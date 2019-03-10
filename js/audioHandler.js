@@ -87,7 +87,10 @@ let musicList = ["map", "easy", "medium", "hard", "boss1", "boss2", "endbattle",
 function fadeOutAll(key) {
     musicList.forEach(song => {
         if (song !== key) {
-            SM.stopMusic(song, 300)
+            SM.stopMusic(song, 100)
+            setTimeout(function () {
+                SM.stopMusic(song, 100)
+            }, 605)
         }
     })
 
@@ -97,7 +100,7 @@ function playMusic(key) {
     fadeOutAll(key);
     setTimeout(function () {
         var currentPlaying = SM.playMusic(key, -1, 1)
-    }, 1000)
+    }, 500)
 }
 
 function playSFX(key) {
