@@ -170,15 +170,19 @@ function startMapBattle(locName) {
         console.log(map.locations)
         console.log(targetLocation)
 
-        let popUp = document.getElementById('modal-content')
+        let popUp = document.getElementById('modal-content');
         popUp.innerHTML = "";
-        popUp.innerHTML += "<h2>Entering " + targetLocation.difficulty + " Battle</h2>"
+        popUp.innerHTML += "<h2>Entering " + targetLocation.difficulty + " Battle</h2>";
         popUp.innerHTML += "<p>" + targetLocation.room.reveal + "</p>";
-        popUp.innerHTML += "<p>Rewards: " + targetLocation.room.treasure + " treasure, " + targetLocation.room.souls + " souls.<p>"
-        popUp.innerHTML += "<div class='popup-button' onClick='startBattle(" + JSON.stringify(targetLocation.name) + ")'>Begin<div>"
+        popUp.innerHTML += "<p>Rewards: " + targetLocation.room.treasure + " treasure, " + targetLocation.room.souls + " souls.<p>";
+        popUp.innerHTML += "<p class='display-button'>Click anywhere to Begin!<p>";
 
-        let popUpContainer = document.getElementById('modal-container')
-        popUpContainer.classList.remove('hidden')
+        let popUpContainer = document.getElementById('modal-container');
+        popUpContainer.onclick = () => {
+            startBattle(targetLocation.name);
+            popUpContainer.onclick = null
+        };
+        popUpContainer.classList.remove('hidden');
     } else {
 
         let targetLocation;

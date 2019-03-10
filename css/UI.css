@@ -85,6 +85,13 @@ body {
     margin-top: -12px;
 }
 
+.display-button {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid #000;
+}
+
+
 .UIButton {
     width: 165px;
     display: flex;
