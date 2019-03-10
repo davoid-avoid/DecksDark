@@ -86,7 +86,7 @@ function getBossMove() {
 
 function renderPlayer() {
     let characterEl = document.getElementById('battle-character')
-    characterCard = "<div class='enemies'><div class='player-shifter'></div><div id='player-attack'></div><div id='player-block'></div><div class='character-image character-image-" + player.class + "'></div>"
+    characterCard = "<div class='enemies'><div class='player-shifter'></div><div id='player-block'></div><div id='player-attack'></div><div class='character-image character-image-" + player.class + "'></div>"
     characterEl.innerHTML = "";
     characterEl.innerHTML += characterCard;
 }

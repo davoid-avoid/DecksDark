@@ -12,12 +12,12 @@
 
 #player-attack {
     width: 100%;
-    height: 34px;
+    height: 53px;
 }
 
 #player-block {
     width: 100%;
-    height: 53px;
+    height: 34px;
 }
 
 .character-image-knight {
