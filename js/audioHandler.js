@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: "map-sprite-sheet", src: "./assets/maps/map-sprite-sheet.png" },
         { id: "map1", src: "./assets/maps/map1.png" },
         { id: "map2", src: "./assets/maps/map2.png" },
+        { id: "map3", src: "./assets/maps/map3.png" },
         { id: "completed", src: "./assets/maps/completed.png" },
         { id: "title-screen", src: "./assets/icons/title.png" },
     ]);
