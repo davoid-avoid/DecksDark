@@ -63,23 +63,28 @@
 }
 
 .map-sprite-knight {
-    background-image: url('../assets/maps/knight-map.png');
+    background-image: url('../assets/maps/map-sprite-sheet.png');
+    background-position: 0px 0px;
 }
 
 .map-sprite-herald {
-    background-image: url('../assets/maps/herald-map.png');
+    background-image: url('../assets/maps/map-sprite-sheet.png');
+    background-position: -40px 0px;
 }
 
 .map-sprite-sorcerer {
-    background-image: url('../assets/maps/sorcerer-map.png');
+    background-image: url('../assets/maps/map-sprite-sheet.png');
+    background-position: -80px 0px;
 }
 
 .map-sprite-assassin {
-    background-image: url('../assets/maps/thief-map.png');
+    background-image: url('../assets/maps/map-sprite-sheet.png');
+    background-position: -120px 0px;
 }
 
 .map-sprite-random {
-    background-image: url('../assets/maps/random-map.png');
+    background-image: url('../assets/maps/map-sprite-sheet.png');
+    background-position: -160px 0px;
 }
 
 .bonfire-sprite {
