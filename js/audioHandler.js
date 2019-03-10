@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: "discard", src: audioPath + "discard.wav" },
         { id: "nodamage", src: audioPath + "nodamage.wav" },
         { id: "death", src: audioPath + "death.wav" },
-        { id: "leveup", src: audioPath + "levelup.wav" },
+        { id: "levelup", src: audioPath + "levelup.wav" },
         { id: "bonfire", src: audioPath + "bonfire.wav" },
         { id: "enableweapon", src: audioPath + "readyweapon.wav" },
         { id: "disableweapon", src: audioPath + "disableweapon.wav" },
