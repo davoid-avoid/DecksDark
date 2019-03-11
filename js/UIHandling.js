@@ -129,7 +129,7 @@ function popupDeck(targetDeck){
         
     }
 
-    popUp.innerHTML += "<p class='display-button'>Click anywhere to close!<p>";
+    popUp.innerHTML += "<br /><p class='display-button'>Click anywhere to close<p>";
     popUpContainer.onclick = () => {
         closePopup();
         popUpContainer.onclick = null

@@ -175,7 +175,7 @@ function startMapBattle(locName) {
         popUp.innerHTML += "<h2>Entering " + targetLocation.difficulty + " Battle</h2>";
         popUp.innerHTML += "<p>" + targetLocation.room.reveal + "</p>";
         popUp.innerHTML += "<p>Rewards: " + targetLocation.room.treasure + " treasure, " + targetLocation.room.souls + " souls.<p>";
-        popUp.innerHTML += "<p class='display-button'>Click anywhere to begin!<p>";
+        popUp.innerHTML += "<p class='display-button'>Click anywhere to begin<p>";
 
         let popUpContainer = document.getElementById('modal-container');
         popUpContainer.onclick = () => {
