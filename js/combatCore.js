@@ -893,12 +893,16 @@ function showTreasureGained() {
     } else {
         popUp.innerHTML += "<h2>Bonfire has gone out. No more treasure or souls awarded.</h2>"
     }
-    popUp.innerHTML += "<div id='popupok' class='popup-button' onClick='returnToMap()'>OK</div>";
+    popUp.innerHTML += "<br /><p class='display-button'>Click anywhere to close<p>";
 
     let popUpContainer = document.getElementById('modal-container');
     popUpContainer.classList.remove('hidden');
     player.block = 0;
     updateReadout();
+    popUpContainer.onclick = () => {
+        returnToMap();
+        popUpContainer.onclick = null
+    };
 }
 
 function gameOver() {
