@@ -850,6 +850,25 @@ var treasureCardList = [
         ]
     },
     {
+        "name": "Divine Protection",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "magic": 0,
+                    "faith": 0
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "lost",
+                "text": "Defense Cards Gain +4 This Turn"
+            }
+        ]
+    },
+    {
         "name": "Hateful Ring",
         "type": "special",
         "abilities": [
@@ -869,7 +888,122 @@ var treasureCardList = [
         ]
     },
     {
-        "name": "Divine Protection",
+        "name": "Spiteful Ring",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Attack Gains +4"
+            }
+        ]
+    },
+    {
+        "name": "Spiteful Ring",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Attack Gains +4"
+            }
+        ]
+    },
+    {
+        "name": "Spiteful Ring",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Attack Gains +4"
+            }
+        ]
+    },
+    {
+        "name": "Holy Protection",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Defense Gains +8"
+            }
+        ]
+    },
+    {
+        "name": "Holy Protection",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Defense Gains +8"
+            }
+        ]
+    },
+    {
+        "name": "Holy Protection",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 1,
+                    "dexterity": 1,
+                    "magic": 1,
+                    "faith": 1
+                },
+                "type": "special",
+                "target": 1,
+                "damage": 2,
+                "useage": "discard",
+                "text": "Next Defense Gains +8"
+            }
+        ]
+    },
+    ,
+    {
+        "name": "Vampiric Shield",
         "type": "special",
         "abilities": [
             {
@@ -880,10 +1014,68 @@ var treasureCardList = [
                     "faith": 0
                 },
                 "type": "special",
-                "target": 1,
-                "damage": 2,
-                "useage": "lost",
-                "text": "Defense Cards Gain +4 This Turn"
+                "target": 0,
+                "damage": 0,
+                "useage": "discard",
+                "text": "Attacks Are Added To Block This Turn"
+            }
+        ]
+    },
+    {
+        "name": "Stone of Malice",
+        "type": "",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "magic": 0,
+                    "faith": 0
+                },
+                "type": "attack",
+                "target": 0,
+                "damage": "Attack With Block",
+                "useage": "discard",
+                "text": "Attack With Block"
+            }
+        ]
+    },
+    ,
+    {
+        "name": "Vampiric Shield",
+        "type": "special",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "magic": 0,
+                    "faith": 0
+                },
+                "type": "special",
+                "target": 0,
+                "damage": 0,
+                "useage": "discard",
+                "text": "Attacks Are Added To Block This Turn"
+            }
+        ]
+    },
+    {
+        "name": "Stone of Malice",
+        "type": "",
+        "abilities": [
+            {
+                "cost": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "magic": 0,
+                    "faith": 0
+                },
+                "type": "attack",
+                "target": 0,
+                "damage": "Attack With Block",
+                "useage": "discard",
+                "text": "Attack With Block"
             }
         ]
     }

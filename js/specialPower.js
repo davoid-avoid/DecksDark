@@ -62,7 +62,7 @@ function useSpecialPower() {
 }
 
 function specialBlock() {
-    player.block += 7;
+    player.block += 15;
     updateReadout();
 }
 

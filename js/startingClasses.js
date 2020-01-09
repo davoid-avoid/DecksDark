@@ -17,7 +17,7 @@ var startingClasses = [
             "Knight Armor",
             "Knight Armor"
         ],
-        "specPower": "Gain 7 Block",
+        "specPower": "Gain 15 Block",
         "pow": "block"
     },
     {

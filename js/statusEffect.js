@@ -2,21 +2,33 @@
 let status = {
     "attackBuff": 0,
     "defenseBuff": 0,
+    "attackTemporaryBuff": 0,
+    "defenseTemporaryBuff": 0,
     "attackBuffAmt": 2,
+    "attackTemporaryBuffAmt": 4,
     "defendBuffAmt": 4,
+    "defendTemporaryBuffAmt": 8,
     "enemyAttackBuff": false,
-    "enemyShieldBuff": false
+    "enemyShieldBuff": false,
+    "attackToDefense": false
 }
 
 
 function enactSpecial(name){
-    console.log(name)
     if (name === 'Green Blossom'){
         resetStamina();
+    }
+    if (name === 'Spiteful Ring'){
+        gainTemporaryAttackBuff();
+        status.attackTemporaryBuff++;
     }
     if (name === 'Hateful Ring'){
         gainAttackBuff();
         status.attackBuff++;
+    }
+    if (name === 'Holy Protection'){
+        gainDefenseTemporaryBuff();
+        status.defenseTemporaryBuff++;
     }
     if (name === 'Divine Protection'){
         gainDefenseBuff();
@@ -24,6 +36,25 @@ function enactSpecial(name){
     }
     if (name === 'Garlic Bread'){
         garlicAttack();
+    }
+    if (name === 'Vampiric Shield'){
+        status.attackToDefense = true;
+        playSFX('special');
+    }
+}
+
+function resetTemporaryStatus(type){
+    if (status.attackTemporaryBuff > 0 && type === "attack"){
+        for (i = status.attackTemporaryBuff; i > 0; i--){
+            loseAttackTemporaryBuff();
+        }
+        status.attackTemporaryBuff = 0;
+    }
+    if (status.defenseTemporaryBuff > 0 && type === "defend"){
+        for (j = status.defenseTemporaryBuff; j > 0; j--){
+            loseDefenseTemporaryBuff();
+        }
+        status.defenseTemporaryBuff = 0;
     }
 }
 
@@ -40,6 +71,7 @@ function resetStatus(){
         }
         status.defenseBuff = 0;
     }
+    status.attackToDefense = false;
 }
 
 function gainAttackBuff(){
@@ -83,6 +115,47 @@ function gainAttackBuff(){
     })
 }
 
+function gainTemporaryAttackBuff(){
+    
+    player.drawDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage += status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.hand.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage += status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.discardDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage += status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.lostDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage += status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    let handEl = document.getElementById('cardHand');
+    handEl.innerHTML = "";
+    player.hand.forEach(card => {
+        renderCardNoFlip(card)
+    })
+}
+
 function loseAttackBuff(){
     player.drawDeck.forEach(card => {
         card.abilities.forEach(ability => {
@@ -112,6 +185,46 @@ function loseAttackBuff(){
         card.abilities.forEach(ability => {
             if (ability.type === 'attack'){
                 ability.damage -= status.attackBuffAmt;
+            }
+        })
+    })
+
+    let handEl = document.getElementById('cardHand');
+    handEl.innerHTML = "";
+    player.hand.forEach(card => {
+        renderCardNoFlip(card)
+    })
+}
+
+function loseAttackTemporaryBuff(){
+    player.drawDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage -= status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.hand.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage -= status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.discardDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage -= status.attackTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.lostDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'attack'){
+                ability.damage -= status.attackTemporaryBuffAmt;
             }
         })
     })
@@ -247,6 +360,86 @@ function loseDefenseBuff(){
         card.abilities.forEach(ability => {
             if (ability.type === 'defend'){
                 ability.damage -= status.defendBuffAmt;
+            }
+        })
+    })
+
+    let handEl = document.getElementById('cardHand');
+    handEl.innerHTML = "";
+    player.hand.forEach(card => {
+        renderCardNoFlip(card)
+    })
+}
+
+function gainDefenseTemporaryBuff(){
+    player.drawDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage += status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.hand.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage += status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.discardDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage += status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.lostDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage += status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    let handEl = document.getElementById('cardHand');
+    handEl.innerHTML = "";
+    player.hand.forEach(card => {
+        renderCardNoFlip(card)
+    })
+}
+
+function loseDefenseTemporaryBuff(){
+    player.drawDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage -= status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.hand.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage -= status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.discardDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage -= status.defendTemporaryBuffAmt;
+            }
+        })
+    })
+
+    player.lostDeck.forEach(card => {
+        card.abilities.forEach(ability => {
+            if (ability.type === 'defend'){
+                ability.damage -= status.defendTemporaryBuffAmt;
             }
         })
     })
